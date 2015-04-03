@@ -1,14 +1,18 @@
 var width = 700;
-var height = 600;
+var height = 800;
 
 var margin = {top: 20, bottom: 20, left: 100, right:100};
 
 var leftScale = d3.scale.linear()
-	.domain([29000, 110000])
+	.domain([29000, 133000])
 	.range([height - margin.top, margin.bottom]);
 
 var middleScale = d3.scale.linear()
-	.domain([29000, 110000])
+	.domain([29000, 133000])
+	.range([height - margin.top, margin.bottom]);	
+
+var rightScale = d3.scale.linear()
+	.domain([29000, 133000])
 	.range([height - margin.top, margin.bottom]);	
 
 var currencyFormatter = d3.format("0,.0f");
@@ -27,23 +31,41 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	lines.enter()
 		.append("line")
 		.attr("x1", margin.left)
-		.attr("x2", width - margin.right)
+		.attr("x2", width/2)
+		.attr("x3", width - margin.right)
 		.attr("y1", function(d) {
 			return leftScale(parseFloat(d['2001']));
 		})
 		.attr("y2", function(d) {
 			return middleScale(parseFloat(d['2006']));
 		})
+		.attr("y3", function(d) {
+			return rightScale(parseFloat(d['2011']));
+		})
 		.attr("stroke", "black")
 		.attr("stroke-width", 1);
 
-	var rightLabels = svg.selectAll(".labels")
+	var rightLabels = svg.selectAll(".right-labels")
 		.data(data);
 		
 	rightLabels.enter()
 		.append("text")
-		.attr("class","labels")
+		.attr("class","right-labels")
 		.attr("x", width - margin.right + 3)
+		.attr("y", function(d) {
+			return rightScale(parseFloat(d['2011'])) + 4;
+		})
+		.text(function (d) {
+			return d['Population'] + " " + currencyFormatter(d['2011']);
+		});
+
+	var middleLabels = svg.selectAll(".middle-labels")
+		.data(data);
+		
+	middleLabels.enter()
+		.append("text")
+		.attr("class","middle-labels")
+		.attr("x", width/2)
 		.attr("y", function(d) {
 			return middleScale(parseFloat(d['2006'])) + 4;
 		})
@@ -70,5 +92,5 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 		.attr("x", width / 2)
 		.attr("y", margin.top)
 		.attr("class", "chart-title")
-		.text("Surrey Census Population, 2001-2006");
+		.text("Surrey Census Population, 2001-2011");
 });
