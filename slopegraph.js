@@ -32,27 +32,27 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	// ================ BEGIN LINES ================= //
 
 	// lines from 2001 - 2006
-	// var leftLines = svg.selectAll("line")
-	// 	.data(data);
+	var leftLines = svg.selectAll(".line")
+	 	.data(data);
 		
-	// leftLines.enter()
-	// 	.append("line")
-	// 	.attr("class","left-line")
-	// 	.attr("x1", margin.left)
-	// 	.attr("x2", width/2)
-	// 	.attr("y1", function(d) {
-	// 		return leftScale(parseFloat(d['2001']));
-	// 	})
-	// 	.attr("y2", function(d) {
-	// 		return middleScale(parseFloat(d['2006']));
-	// 	})
+	 leftLines.enter()
+		.append("line")
+	 	.attr("class","left-line")
+	 	.attr("x1", margin.left)
+	 	.attr("x2", width/2)
+	 	.attr("y1", function(d) {
+	 		return leftScale(parseFloat(d['2001']));
+	 	})
+	 	.attr("y2", function(d) {
+	 		return middleScale(parseFloat(d['2006']));
+	 	})
 
-	// 	// line style
-	// 	.attr("stroke", "black")
-	// 	.attr("stroke-width", 1);
+	 	// line style
+	 	.attr("stroke", "black")
+	 	.attr("stroke-width", 1);
 
 	// lines from 2006 - 2011
-	var rightLines = svg.selectAll("line")
+	var rightLines = svg.selectAll(".line")
 		.data(data);
 
 	rightLines.enter()
@@ -68,8 +68,8 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 		})
 
 	// line style
-	.attr("stroke", "red")
-	.attr("stroke-width", 3);
+	.attr("stroke", "black")
+	.attr("stroke-width", 1);
 
 	// ================ END LINES ================= //
 
