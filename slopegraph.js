@@ -140,10 +140,10 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 // }
 
 function lineColour(d){
-	if(d['Population'] < 30000) return "black";
-	if((d['Population'] >= 30000) && (d['Population'] <= 59999)) return "lightblue";
-	if((d['Population'] >= 6000) && (d['Population'] <= 99999)) return "#9DB6FC";
-	if((d['Population'] >= 10000) && (d['Population'] <= 129999)) return "#86A5FC";
-	if(d['Population'] > 130000) return "#628CFC";
+	if((d["2011"] + d["2006"] + d["2001"] < 30000) return "rgb(0, 0, 0)";
+	if((d["2011"] + d["2006"] + d["2001"] >= 30000) && ((d["2011"] + d["2006"] + d["2001"] <= 59999) return "lightblue";
+	if((d["2011"] + d["2006"] + d["2001"] >= 60000) && ((d["2011"] + d["2006"] + d["2001"] <= 99999) return "#9DB6FC";
+	if((d["2011"] + d["2006"] + d["2001"] >= 10000) && ((d["2011"] + d["2006"] + d["2001"] <= 129999) return "#86A5FC";
+	if((d["2011"] + d["2006"] + d["2001"] > 130000) return "#628CFC";
 	
 }
