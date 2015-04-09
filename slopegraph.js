@@ -49,7 +49,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 
 	 	// line style
 	 	.attr("stroke", "#666666")
-	 	.attr("stroke-width", lineThickness);
+	 	.attr("stroke-width", lineThicknessLeft);
 
 	// lines from 2006 - 2011
 	var rightLines = svg.selectAll(".line")
@@ -69,7 +69,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 
 	// line style
 	.attr("stroke", "#666666")
-	.attr("stroke-width", lineThickness);
+	.attr("stroke-width", lineThicknessRight);
 
 	// ================ END LINES ================= //
 
@@ -132,16 +132,24 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	// ================ END LABELS ================= //
 });
 
-function lineThickness(d){
-	if ((1 - (d["2006"] / d["2011"]) > 0.25) || (1 - (d["2001"] / d["2006"]) > 0.25)) return "9";
+function lineThicknessLeft(d){
+	if (1 - (d["2001"] / d["2006"]) > 0.25) return "9";
 	
-	if (((1 - (d["2006"] / d["2011"]) < 0.24) && (1 - (d["2006"] / d["2011"]) > 0.15)) || ((1 - (d["2006"] / d["2011"]) < 0.24) && (1 - (d["2001"] / d["2006"]) > 0.15))) return "6";
+	if ((1 - (d["2001"] / d["2006"]) < 0.24) && (1 - (d["2001"] / d["2006"]) > 0.15)) return "6";
 
-	if (((1 - (d["2006"] / d["2011"]) < 0.14) && (1 - (d["2006"] / d["2011"]) > 0.05)) || ((1 - (d["2006"] / d["2011"]) < 0.14) && (1 - (d["2001"] / d["2006"]) > 0.05))) return "3";
+	if ((1 - (d["2001"] / d["2006"]) < 0.14) && (1 - (d["2001"] / d["2006"]) > 0.05)) return "3";
 	
-	if ((1 - (d["2006"] / d["2011"]) < 0.04) || (1 - (d["2001"] / d["2006"]) < 0.04)) return "1";
-	// if ((d["2006"] / d["2011"] > 0.25) || (d["2001"] / d["2006"] > 0.25)) return "3";
-	// if ((d["2006"] / d["2011"] > 0.25) || (d["2001"] / d["2006"] > 0.25))
+	if (1 - (d["2001"] / d["2006"]) < 0.04) return "1";
+}
+
+function lineThicknessRight(d){
+	if (1 - (d["2006"] / d["2011"]) > 0.25) return "9";
+	
+	if ((1 - (d["2006"] / d["2011"]) < 0.24) && (1 - (d["2006"] / d["2011"]) > 0.15)) return "6";
+
+	if ((1 - (d["2006"] / d["2011"]) < 0.14) && (1 - (d["2006"] / d["2011"]) > 0.05)) return "3";
+	
+	if (1 - (d["2006"] / d["2011"]) < 0.04) return "1";
 }
 
 // function lineColour(d){
