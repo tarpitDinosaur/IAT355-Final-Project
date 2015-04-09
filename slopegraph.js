@@ -48,8 +48,8 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	 	})
 
 	 	// line style
-	 	.attr("stroke", lineColour)
-	 	.attr("stroke-width", 1);
+	 	.attr("stroke", "#666666")
+	 	.attr("stroke-width", lineThickness);
 
 	// lines from 2006 - 2011
 	var rightLines = svg.selectAll(".line")
@@ -68,8 +68,8 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 		})
 
 	// line style
-	.attr("stroke", lineColour)
-	.attr("stroke-width", 1);
+	.attr("stroke", "#666666")
+	.attr("stroke-width", lineThickness);
 
 	// ================ END LINES ================= //
 
@@ -132,18 +132,23 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	// ================ END LABELS ================= //
 });
 
-// function lineColour(d){
-// 	if ((d["2011"] - d["2006"] >= 7000) && (d["2011"] - d["2006"] < 12000)) return "red";
-// 	if ((d["2011"] - d["2006"] >= 12000) && (d["2011"] - d["2006"] < 17000)) return "blue";
-// 	if ((d["2011"] - d["2006"] >= 17000)  && (d["2011"] - d["2006"] < 22000)) return "green";
-// 	if (d["2011"] - d["2006"] >= 22000) return "aqua";
-// }
-
-function lineColour(d){
-	if(d["2011"] + d["2006"] + d["2001"] < 30000) return "black";
-	if((d["2011"] + d["2006"] + d["2001"] >= 30000) && (d["2011"] + d["2006"] + d["2001"] <= 59999)) return "lightblue";
-	if((d["2011"] + d["2006"] + d["2001"] >= 60000) && (d["2011"] + d["2006"] + d["2001"] <= 99999)) return "#9DB6FC";
-	if((d["2011"] + d["2006"] + d["2001"] >= 10000) && (d["2011"] + d["2006"] + d["2001"] <= 129999)) return "#86A5FC";
-	if(d["2011"] + d["2006"] + d["2001"] > 130000) return "#628CFC";
+function lineThickness(d){
+	if ((1 - (d["2006"] / d["2011"]) > 0.25) || (1 - (d["2001"] / d["2006"]) > 0.25)) return "9";
 	
+	if (((1 - (d["2006"] / d["2011"]) < 0.24) && (1 - (d["2006"] / d["2011"]) > 0.15)) || ((1 - (d["2006"] / d["2011"]) < 0.24) && (1 - (d["2001"] / d["2006"]) > 0.15))) return "6";
+
+	if (((1 - (d["2006"] / d["2011"]) < 0.14) && (1 - (d["2006"] / d["2011"]) > 0.05)) || ((1 - (d["2006"] / d["2011"]) < 0.14) && (1 - (d["2001"] / d["2006"]) > 0.05))) return "3";
+	
+	if ((1 - (d["2006"] / d["2011"]) < 0.04) || (1 - (d["2001"] / d["2006"]) < 0.04)) return "1";
+	// if ((d["2006"] / d["2011"] > 0.25) || (d["2001"] / d["2006"] > 0.25)) return "3";
+	// if ((d["2006"] / d["2011"] > 0.25) || (d["2001"] / d["2006"] > 0.25))
 }
+
+// function lineColour(d){
+// 	if(d["2011"] + d["2006"] + d["2001"] < 30000) return "black";
+// 	if((d["2011"] + d["2006"] + d["2001"] >= 30000) && (d["2011"] + d["2006"] + d["2001"] <= 59999)) return "lightblue";
+// 	if((d["2011"] + d["2006"] + d["2001"] >= 60000) && (d["2011"] + d["2006"] + d["2001"] <= 99999)) return "#9DB6FC";
+// 	if((d["2011"] + d["2006"] + d["2001"] >= 10000) && (d["2011"] + d["2006"] + d["2001"] <= 129999)) return "#86A5FC";
+// 	if(d["2011"] + d["2006"] + d["2001"] > 130000) return "#628CFC";
+	
+// }
