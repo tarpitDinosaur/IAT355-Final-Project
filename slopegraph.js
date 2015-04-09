@@ -68,7 +68,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 		})
 
 	// line style
-	.attr("stroke", "black")
+	.attr("stroke", lineColour)
 	.attr("stroke-width", 1);
 
 	// ================ END LINES ================= //
@@ -133,8 +133,8 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 });
 
 function lineColour(d){
-	if (d["2006"] - d["2011"] > 29000) return babyblue;
-	if (d["2006"] - d["2011"] > 29000) return lightblue;
-	if (d["2006"] - d["2011"] > 29000) return blue;
-	if (d["2006"] - d["2011"] > 29000) return aqua;
+	if ((d["2011"] - d["2006"] >= 7000) && (d["2011"] - d["2006"] < 12000)) return "red";
+	if ((d["2011"] - d["2006"] >= 12000) && (d["2011"] - d["2006"] < 17000)) return "blue";
+	if ((d["2011"] - d["2006"] >= 17000)  && (d["2011"] - d["2006"] < 22000)) return "green";
+	if (d["2011"] - d["2006"] >= 22000) return "aqua";
 }
