@@ -1,9 +1,30 @@
+body{
+	padding: 0 3vw;
+	max-width: 1200px;
+}
+
 h1{
-	text-align: center;
+	font-family: Helvetica;
+	text-align: left;
 	margin-bottom: 30px;
+	width: 17vw;
+	position: fixed;
+}
+
+#slopegraph{
+	margin: 0 auto;
+	text-align: center;
 }
 
 #map{
-	width: 330px;
-	float: left;
+	width: 20vw;
+	position: fixed;
+	top: 30px;
+	right: 5vw;
+}
+
+text{
+	font-family: Garamond;
+	font-size: 14px;
+	text-align: center;
 }

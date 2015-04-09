@@ -1,4 +1,4 @@
-var width = 700;
+var width = 640;
 var height = 800;
 
 var margin = {top: 20, bottom: 20, left: 100, right:100};
@@ -97,7 +97,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	middleLabels.enter()
 		.append("text")
 		.attr("class","middle-labels")
-		.attr("x", width/2)
+		.attr("x", width/2 + 3)
 		.attr("y", function(d) {
 			return middleScale(parseFloat(d['2006'])) + 4;
 		})
@@ -112,14 +112,15 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	leftLabels.enter()
 		.append("text")
 		.attr("class","left-labels")
-		.attr("x", margin.left - 65)
+		.attr("x", margin.left - 105)
 		.attr("y", function(d) {
 			return leftScale(parseFloat(d['2001'])) + 4;
 		})
 		.text(function (d) {
 			return d['Population'] + " " + numericalFormatter(d['2001']);
 		})
-		.style("text-anchor","begin");
+		//.style("begin");
+		.style.textAlign="right";
 	
 	// title
 	// svg.append("text")
@@ -130,3 +131,10 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 
 	// ================ END LABELS ================= //
 });
+
+function lineColour(d){
+	if (d["2006"] - d["2011"] > 29000) return babyblue;
+	if (d["2006"] - d["2011"] > 29000) return lightblue;
+	if (d["2006"] - d["2011"] > 29000) return blue;
+	if (d["2006"] - d["2011"] > 29000) return aqua;
+}
