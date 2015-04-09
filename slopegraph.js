@@ -48,7 +48,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	 	})
 
 	 	// line style
-	 	.attr("stroke", "black")
+	 	.attr("stroke", lineColour)
 	 	.attr("stroke-width", 1);
 
 	// lines from 2006 - 2011
@@ -132,9 +132,18 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	// ================ END LABELS ================= //
 });
 
+// function lineColour(d){
+// 	if ((d["2011"] - d["2006"] >= 7000) && (d["2011"] - d["2006"] < 12000)) return "red";
+// 	if ((d["2011"] - d["2006"] >= 12000) && (d["2011"] - d["2006"] < 17000)) return "blue";
+// 	if ((d["2011"] - d["2006"] >= 17000)  && (d["2011"] - d["2006"] < 22000)) return "green";
+// 	if (d["2011"] - d["2006"] >= 22000) return "aqua";
+// }
+
 function lineColour(d){
-	if ((d["2011"] - d["2006"] >= 7000) && (d["2011"] - d["2006"] < 12000)) return "red";
-	if ((d["2011"] - d["2006"] >= 12000) && (d["2011"] - d["2006"] < 17000)) return "blue";
-	if ((d["2011"] - d["2006"] >= 17000)  && (d["2011"] - d["2006"] < 22000)) return "green";
-	if (d["2011"] - d["2006"] >= 22000) return "aqua";
+	if(d['Population'] < 30000) return "black";
+	if((d['Population'] >= 30000) && (d['Population'] <= 59999)) return "lightblue";
+	if((d['Population'] >= 6000) && (d['Population'] <= 99999)) return "#9DB6FC";
+	if((d['Population'] >= 10000) && (d['Population'] <= 129999)) return "#86A5FC";
+	if(d['Population'] > 130000) return "#628CFC";
+	
 }
