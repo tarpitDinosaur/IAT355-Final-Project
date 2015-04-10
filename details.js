@@ -1,21 +1,21 @@
 var width = 640;
-var height = 1200;
+var height = 10000;
 
 var margin = {top: 20, bottom: 20, left: 100, right:100};
 
 // data from 2001
 var leftScale = d3.scale.linear()
-	.domain([25000, 135000])
+	.domain([0, 133000])
 	.range([height - margin.top, margin.bottom]);
 
 // data from 2006
 var middleScale = d3.scale.linear()
-	.domain([25000, 135000])
+	.domain([0, 133000])
 	.range([height - margin.top, margin.bottom]);	
 
 // data from 2011
 var rightScale = d3.scale.linear()
-	.domain([25000, 135000])
+	.domain([0, 133000])
 	.range([height - margin.top, margin.bottom]);	
 
 var numericalFormatter = d3.format("0,.0f");
@@ -26,7 +26,7 @@ var svg = d3.select("#slopegraph")
 	.attr("height", height);
 
 // load csv
-d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
+d3.csv('http://www.sfu.ca/~atso/census_data.csv', function(d) {
 	data = d;
 	
 	// ================ BEGIN LINES ================= //
@@ -49,7 +49,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 
 	 	// line style
 	 	.attr("stroke", "#666666")
-	 	.attr("stroke-width", lineThicknessLeft);
+	 	.attr("stroke-width", 1);
 
 	// lines from 2006 - 2011
 	var rightLines = svg.selectAll(".line")
@@ -69,7 +69,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 
 	// line style
 	.attr("stroke", "#666666")
-	.attr("stroke-width", lineThicknessRight);
+	.attr("stroke-width", 1);
 
 	// ================ END LINES ================= //
 
@@ -87,7 +87,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 			return rightScale(parseFloat(d['2011']));
 		})
 		.text(function (d) {
-			return numericalFormatter(d['2011']) + " " + d['Population'];
+			return numericalFormatter(d['2011']) + " " + d['Category'];
 		});
 
 	// label 2006 data
@@ -117,7 +117,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 			return leftScale(parseFloat(d['2001'])) + 4;
 		})
 		.text(function (d) {
-			return d['Population'] + " " + numericalFormatter(d['2001']);
+			return d['Category'] + " " + numericalFormatter(d['2001']);
 		})
 		//.style("begin");
 		.style.textAlign="right";

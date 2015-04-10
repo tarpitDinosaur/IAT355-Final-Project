@@ -28,3 +28,34 @@ text{
 	font-size: 14px;
 	text-align: center;
 }
+
+.left-labels{
+	cursor: pointer;
+}
+
+#years-container{
+	width: 640px;
+	margin: 0 auto;
+}
+
+#years{
+	width: 213.33px;
+	float: left;
+	margin-top: 5px;
+}
+
+#years h3:hover{
+	cursor: pointer;
+}
+
+#left{
+	text-align: left;
+}
+
+#center{
+	text-align: center;
+}
+
+#right{
+	text-align: right;
+}
