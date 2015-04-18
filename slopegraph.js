@@ -1,22 +1,24 @@
-var width = 1080;
+var width = 960;
 var height = 300;
 
 var margin = {top: 20, bottom: 20, left: 100, right:100};
 
+var lineHeight = 30;
+
 // data from 2001
 var leftScale = d3.scale.linear()
 	.domain([29000, 135000])
-	.range([290 - 290, 1350 - 290]);
+	.range([100, 960]);
 
 // data from 2006
 var middleScale = d3.scale.linear()
 	.domain([29000, 135000])
-	.range([290 - 290, 1350 - 290]);	
+	.range([100, 960]);	
 
 // data from 2011
 var rightScale = d3.scale.linear()
 	.domain([29000, 135000])
-	.range([290 - 290, 1350 - 290]);	
+	.range([100, 960]);	
 
 var numericalFormatter = d3.format("0,.0f");
 
@@ -38,8 +40,8 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	 leftLines.enter()
 		.append("line")
 	 	.attr("class","left-line")
-	 	.attr("y1", heightSpace)
-	 	.attr("y2", heightSpace)
+	 	.attr("y1", height/2 - 50)
+	 	.attr("y2", height/2 - 50)
 	 	.attr("x1", function(d) {
 	 		return leftScale(parseFloat(d['2001']));
 	 	})
@@ -49,7 +51,8 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 
 	 	// line style
 	 	.attr("stroke", "#666666")
-	 	.attr("stroke-width", 1);
+	 	.attr("stroke-width", 1)
+	 	.attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; });
 
 	// lines from 2006 - 2011
 	var rightLines = svg.selectAll(".line")
@@ -58,8 +61,8 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	rightLines.enter()
 		.append("line")
 		.attr("class","right-line")
-		.attr("y1", heightSpace)
-	 	.attr("y2", heightSpace)
+		.attr("y1", height/2 - 50)
+	 	.attr("y2", height/2 - 50)
 	 	.attr("x1", function(d) {
 	 		return middleScale(parseFloat(d['2006']));
 	 	})
@@ -69,7 +72,8 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 
 	// line style
 	.attr("stroke", "#666666")
-	.attr("stroke-width", 1);
+	.attr("stroke-width", 1)
+	.attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; });
 
 	// // ================ END LINES ================= //
 
@@ -83,9 +87,12 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
         .attr("cx", function (d) { 
         	return leftScale(parseFloat(d['2001'])); 
         })
-        .attr("cy", heightSpace)
+        .attr("cy", height/2 - 50)
         .attr("r", 5)
-        .style("fill", "blue");
+        .style("fill", d3.rgb(44, 160, 44))
+        .attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
+        .on("mouseover", showtooltip)
+    	.on("mouseout", hidetooltip);
 
     var middleDot = svg.selectAll(".circle")
         .data(data);
@@ -95,9 +102,12 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
         .attr("cx", function (d) { 
         	return middleScale(parseFloat(d['2006'])); 
         })
-        .attr("cy", heightSpace)
+        .attr("cy", height/2 - 50)
         .attr("r", 5)
-        .style("fill", "green");
+        .style("fill", d3.rgb(31, 119, 180))
+        .attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
+        .on("mouseover", showtooltip)
+    	.on("mouseout", hidetooltip);
 
     var rightDot = svg.selectAll(".circle")
         .data(data);
@@ -107,17 +117,47 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
         .attr("cx", function (d) { 
         	return rightScale(parseFloat(d['2011'])); 
         })
-        .attr("cy", heightSpace)
+        .attr("cy", height/2 - 50)
         .attr("r", 5)
-        .style("fill", "red");
+        .style("fill", d3.rgb(255, 127, 14))
+        .attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
+        .on("mouseover", showtooltip)
+    	.on("mouseout", hidetooltip);
 
-    function heightSpace(d) {
-    	for (i = 0; i < data.length; i++){
-    		for (j = 0; j = data.length; j++){
-    			console.log("hello");
-    		}
-    	}
-    }
+		function showtooltip(d){
+		  d3.select("#tooltip")
+
+		  .html(
+		          numericalFormatter(d['2006'])
+		  )
+		  .style({
+		      "display": "block",
+		      "left": d3.event.pageX + "px",
+		      "top": d3.event.pageY + "px"
+		  })
+		}
+
+		function hidetooltip(){
+		  d3.select("#tooltip")
+		  .style("display", "none")
+		}
+
+    // ================= END DOTS ===================== //
+
+	// ================= AXIS ===================== //
+
+	// var xAxis = svg.selectAll("axis")
+	//     .scale(leftScale)
+	//     .orient("bottom");
+
+	// svg.append("g")
+	//     .attr("class", "axis")
+	//     .attr("id", "xAxis")
+	//     //.attr("transform", "translate(0,550)")
+	//     .call(xAxis);
+
+	// ================= AXIS ===================== //    
+   
 
 	// // ================ BEGIN LABELS ================= //
 
@@ -151,22 +191,22 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	// 		return numericalFormatter(d['2006']);
 	// 	});
 	
-	// // label 2001 data
-	// var leftLabels = svg.selectAll(".left-labels")
-	// 	.data(data);
+	// label 2001 data
+	var leftLabels = svg.selectAll(".left-labels")
+		.data(data);
 		
-	// leftLabels.enter()
-	// 	.append("text")
-	// 	.attr("class","left-labels")
-	// 	.attr("x", margin.left - 105)
-	// 	.attr("y", function(d) {
-	// 		return leftScale(parseFloat(d['2001'])) + 4;
-	// 	})
-	// 	.text(function (d) {
-	// 		return d['Population'] + " " + numericalFormatter(d['2001']);
-	// 	})
-	// 	//.style("begin");
-	// 	.style.textAlign="right";
+	leftLabels.enter()
+		.append("text")
+		.attr("class","left-labels")
+		.attr("y", height/2 - 46)
+		.attr("x", function(d) {
+			return leftScale(parseFloat(d['2001'])) - 10;
+		})
+		.text(function (d) {
+			return d['Population'];
+		})
+		.attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
+		.style("text-anchor", "end");
 	
 	// title
 	// svg.append("text")
@@ -197,6 +237,18 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 
 	// ================ END LABELS ================= //
 });
+
+ function heightSpace(d) {
+    	var heightSpace = 0;
+    	var incrementor = 0;
+    	for (i = 0; i < data.length; i++){
+    		incrementor++;
+    		heightSpace = height/2 + (10*incrementor);
+    		console.log(heightSpace);
+    	}
+    	return heightSpace;
+    }
+
 
 // function lineThicknessLeft(d){
 // 	if (1 - (d["2001"] / d["2006"]) > 0.25) return "9";
