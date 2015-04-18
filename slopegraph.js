@@ -1,4 +1,4 @@
-var width = 960;
+var width = 980;
 var height = 300;
 
 var margin = {top: 20, bottom: 20, left: 100, right:100};
@@ -40,8 +40,8 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	 leftLines.enter()
 		.append("line")
 	 	.attr("class","left-line")
-	 	.attr("y1", height/2 - 50)
-	 	.attr("y2", height/2 - 50)
+	 	.attr("y1", 80)
+	 	.attr("y2", 80)
 	 	.attr("x1", function(d) {
 	 		return leftScale(parseFloat(d['2001']));
 	 	})
@@ -61,8 +61,8 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	rightLines.enter()
 		.append("line")
 		.attr("class","right-line")
-		.attr("y1", height/2 - 50)
-	 	.attr("y2", height/2 - 50)
+		.attr("y1", 80)
+	 	.attr("y2", 80)
 	 	.attr("x1", function(d) {
 	 		return middleScale(parseFloat(d['2006']));
 	 	})
@@ -87,7 +87,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
         .attr("cx", function (d) { 
         	return leftScale(parseFloat(d['2001'])); 
         })
-        .attr("cy", height/2 - 50)
+        .attr("cy", 80)
         .attr("r", 5)
         .style("fill", d3.rgb(44, 160, 44))
         .attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
@@ -102,7 +102,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
         .attr("cx", function (d) { 
         	return middleScale(parseFloat(d['2006'])); 
         })
-        .attr("cy", height/2 - 50)
+        .attr("cy", 80)
         .attr("r", 5)
         .style("fill", d3.rgb(31, 119, 180))
         .attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
@@ -117,7 +117,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
         .attr("cx", function (d) { 
         	return rightScale(parseFloat(d['2011'])); 
         })
-        .attr("cy", height/2 - 50)
+        .attr("cy", 80)
         .attr("r", 5)
         .style("fill", d3.rgb(255, 127, 14))
         .attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
@@ -146,15 +146,14 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 
 	// ================= AXIS ===================== //
 
-	// var xAxis = svg.selectAll("axis")
-	//     .scale(leftScale)
-	//     .orient("bottom");
+	var axis = d3.svg.axis()
+		.scale(rightScale)
+		.orient("top");
 
-	// svg.append("g")
-	//     .attr("class", "axis")
-	//     .attr("id", "xAxis")
-	//     //.attr("transform", "translate(0,550)")
-	//     .call(xAxis);
+	svg.append("g")
+		.attr("class", "axis")
+		.attr("transform", "translate(0, 40)")
+		.call(axis);
 
 	// ================= AXIS ===================== //    
    
@@ -198,7 +197,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	leftLabels.enter()
 		.append("text")
 		.attr("class","left-labels")
-		.attr("y", height/2 - 46)
+		.attr("y", 85)
 		.attr("x", function(d) {
 			return leftScale(parseFloat(d['2001'])) - 10;
 		})
@@ -237,18 +236,6 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 
 	// ================ END LABELS ================= //
 });
-
- function heightSpace(d) {
-    	var heightSpace = 0;
-    	var incrementor = 0;
-    	for (i = 0; i < data.length; i++){
-    		incrementor++;
-    		heightSpace = height/2 + (10*incrementor);
-    		console.log(heightSpace);
-    	}
-    	return heightSpace;
-    }
-
 
 // function lineThicknessLeft(d){
 // 	if (1 - (d["2001"] / d["2006"]) > 0.25) return "9";

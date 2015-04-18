@@ -2,6 +2,12 @@ body{
 	padding: 0 3vw;
 	max-width: 1200px;
 }
+text{
+	font-family: Helvetica;
+	font-size: 13px;
+	font-weight: 300;
+	text-align: center;
+}
 
 #left-side{
 	margin-bottom: 30px;
@@ -32,12 +38,6 @@ h5{
 	right: 5vw;
 }
 
-text{
-	font-family: Garamond;
-	font-size: 14px;
-	text-align: center;
-}
-
 .left-labels{
 	cursor: pointer;
 }
@@ -66,6 +66,18 @@ text{
 	margin-top: 5px;
 	width: 5vw;
 	float: left;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
 }
 
 #tooltip{
