@@ -1,22 +1,22 @@
-var width = 640;
-var height = 1200;
+var width = 1080;
+var height = 300;
 
 var margin = {top: 20, bottom: 20, left: 100, right:100};
 
 // data from 2001
 var leftScale = d3.scale.linear()
-	.domain([25000, 135000])
-	.range([height - margin.top, margin.bottom]);
+	.domain([29000, 135000])
+	.range([290 - 290, 1350 - 290]);
 
 // data from 2006
 var middleScale = d3.scale.linear()
-	.domain([25000, 135000])
-	.range([height - margin.top, margin.bottom]);	
+	.domain([29000, 135000])
+	.range([290 - 290, 1350 - 290]);	
 
 // data from 2011
 var rightScale = d3.scale.linear()
-	.domain([25000, 135000])
-	.range([height - margin.top, margin.bottom]);	
+	.domain([29000, 135000])
+	.range([290 - 290, 1350 - 290]);	
 
 var numericalFormatter = d3.format("0,.0f");
 
@@ -38,18 +38,18 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	 leftLines.enter()
 		.append("line")
 	 	.attr("class","left-line")
-	 	.attr("x1", margin.left)
-	 	.attr("x2", width/2 - 10)
-	 	.attr("y1", function(d) {
+	 	.attr("y1", height/2)
+	 	.attr("y2", height/2)
+	 	.attr("x1", function(d) {
 	 		return leftScale(parseFloat(d['2001']));
 	 	})
-	 	.attr("y2", function(d) {
+	 	.attr("x2", function(d) {
 	 		return middleScale(parseFloat(d['2006']));
 	 	})
 
 	 	// line style
 	 	.attr("stroke", "#666666")
-	 	.attr("stroke-width", lineThicknessLeft);
+	 	.attr("stroke-width", 1);
 
 	// lines from 2006 - 2011
 	var rightLines = svg.selectAll(".line")
@@ -58,69 +58,69 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	rightLines.enter()
 		.append("line")
 		.attr("class","right-line")
-		.attr("x1", width/2 + 50)
-		.attr("x2", width - margin.right)
-		.attr("y1", function(d) {
-			return middleScale(parseFloat(d['2006']));
-		})
-		.attr("y2", function(d) {
-			return rightScale(parseFloat(d['2011']));
-		})
+		.attr("y1", height/2)
+	 	.attr("y2", height/2)
+	 	.attr("x1", function(d) {
+	 		return middleScale(parseFloat(d['2006']));
+	 	})
+	 	.attr("x2", function(d) {
+	 		return rightScale(parseFloat(d['2011']));
+	 	})
 
 	// line style
 	.attr("stroke", "#666666")
-	.attr("stroke-width", lineThicknessRight);
+	.attr("stroke-width", 1);
 
-	// ================ END LINES ================= //
+	// // ================ END LINES ================= //
 
-	// ================ BEGIN LABELS ================= //
+	// // ================ BEGIN LABELS ================= //
 
-	// label 2011 data
-	var rightLabels = svg.selectAll(".right-labels")
-		.data(data);
+	// // label 2011 data
+	// var rightLabels = svg.selectAll(".right-labels")
+	// 	.data(data);
 		
-	rightLabels.enter()
-		.append("text")
-		.attr("class","right-labels")
-		.attr("x", width - margin.right)
-		.attr("y", function(d) {
-			return rightScale(parseFloat(d['2011']));
-		})
-		.text(function (d) {
-			return numericalFormatter(d['2011']) + " " + d['Population'];
-		});
+	// rightLabels.enter()
+	// 	.append("text")
+	// 	.attr("class","right-labels")
+	// 	.attr("x", width - margin.right)
+	// 	.attr("y", function(d) {
+	// 		return rightScale(parseFloat(d['2011']));
+	// 	})
+	// 	.text(function (d) {
+	// 		return numericalFormatter(d['2011']) + " " + d['Population'];
+	// 	});
 
-	// label 2006 data
-	var middleLabels = svg.selectAll(".middle-labels")
-		.data(data);
+	// // label 2006 data
+	// var middleLabels = svg.selectAll(".middle-labels")
+	// 	.data(data);
 		
-	middleLabels.enter()
-		.append("text")
-		.attr("class","middle-labels")
-		.attr("x", width/2)
-		.attr("y", function(d) {
-			return middleScale(parseFloat(d['2006'])) + 4;
-		})
-		.text(function (d) {
-			return numericalFormatter(d['2006']);
-		});
+	// middleLabels.enter()
+	// 	.append("text")
+	// 	.attr("class","middle-labels")
+	// 	.attr("x", width/2)
+	// 	.attr("y", function(d) {
+	// 		return middleScale(parseFloat(d['2006'])) + 4;
+	// 	})
+	// 	.text(function (d) {
+	// 		return numericalFormatter(d['2006']);
+	// 	});
 	
-	// label 2001 data
-	var leftLabels = svg.selectAll(".left-labels")
-		.data(data);
+	// // label 2001 data
+	// var leftLabels = svg.selectAll(".left-labels")
+	// 	.data(data);
 		
-	leftLabels.enter()
-		.append("text")
-		.attr("class","left-labels")
-		.attr("x", margin.left - 105)
-		.attr("y", function(d) {
-			return leftScale(parseFloat(d['2001'])) + 4;
-		})
-		.text(function (d) {
-			return d['Population'] + " " + numericalFormatter(d['2001']);
-		})
-		//.style("begin");
-		.style.textAlign="right";
+	// leftLabels.enter()
+	// 	.append("text")
+	// 	.attr("class","left-labels")
+	// 	.attr("x", margin.left - 105)
+	// 	.attr("y", function(d) {
+	// 		return leftScale(parseFloat(d['2001'])) + 4;
+	// 	})
+	// 	.text(function (d) {
+	// 		return d['Population'] + " " + numericalFormatter(d['2001']);
+	// 	})
+	// 	//.style("begin");
+	// 	.style.textAlign="right";
 	
 	// title
 	// svg.append("text")
@@ -152,25 +152,25 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	// ================ END LABELS ================= //
 });
 
-function lineThicknessLeft(d){
-	if (1 - (d["2001"] / d["2006"]) > 0.25) return "9";
+// function lineThicknessLeft(d){
+// 	if (1 - (d["2001"] / d["2006"]) > 0.25) return "9";
 	
-	if ((1 - (d["2001"] / d["2006"]) < 0.24) && (1 - (d["2001"] / d["2006"]) > 0.15)) return "6";
+// 	if ((1 - (d["2001"] / d["2006"]) < 0.24) && (1 - (d["2001"] / d["2006"]) > 0.15)) return "6";
 
-	if ((1 - (d["2001"] / d["2006"]) < 0.14) && (1 - (d["2001"] / d["2006"]) > 0.05)) return "3";
+// 	if ((1 - (d["2001"] / d["2006"]) < 0.14) && (1 - (d["2001"] / d["2006"]) > 0.05)) return "3";
 	
-	if (1 - (d["2001"] / d["2006"]) < 0.04) return "1";
-}
+// 	if (1 - (d["2001"] / d["2006"]) < 0.04) return "1";
+// }
 
-function lineThicknessRight(d){
-	if (1 - (d["2006"] / d["2011"]) > 0.25) return "9";
+// function lineThicknessRight(d){
+// 	if (1 - (d["2006"] / d["2011"]) > 0.25) return "9";
 	
-	if ((1 - (d["2006"] / d["2011"]) < 0.24) && (1 - (d["2006"] / d["2011"]) > 0.15)) return "6";
+// 	if ((1 - (d["2006"] / d["2011"]) < 0.24) && (1 - (d["2006"] / d["2011"]) > 0.15)) return "6";
 
-	if ((1 - (d["2006"] / d["2011"]) < 0.14) && (1 - (d["2006"] / d["2011"]) > 0.05)) return "3";
+// 	if ((1 - (d["2006"] / d["2011"]) < 0.14) && (1 - (d["2006"] / d["2011"]) > 0.05)) return "3";
 	
-	if (1 - (d["2006"] / d["2011"]) < 0.04) return "1";
-}
+// 	if (1 - (d["2006"] / d["2011"]) < 0.04) return "1";
+// }
 
 // function lineColour(d){
 // 	if(d["2011"] + d["2006"] + d["2001"] < 30000) return "black";
