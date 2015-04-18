@@ -38,8 +38,8 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	 leftLines.enter()
 		.append("line")
 	 	.attr("class","left-line")
-	 	.attr("y1", height/2)
-	 	.attr("y2", height/2)
+	 	.attr("y1", heightSpace)
+	 	.attr("y2", heightSpace)
 	 	.attr("x1", function(d) {
 	 		return leftScale(parseFloat(d['2001']));
 	 	})
@@ -58,8 +58,8 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	rightLines.enter()
 		.append("line")
 		.attr("class","right-line")
-		.attr("y1", height/2)
-	 	.attr("y2", height/2)
+		.attr("y1", heightSpace)
+	 	.attr("y2", heightSpace)
 	 	.attr("x1", function(d) {
 	 		return middleScale(parseFloat(d['2006']));
 	 	})
@@ -72,6 +72,52 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	.attr("stroke-width", 1);
 
 	// // ================ END LINES ================= //
+
+	// ================= BEGIN DOTS ================ //
+
+	var leftDot = svg.selectAll(".circle")
+        .data(data);
+        
+    leftDot.enter()
+        .append("circle")
+        .attr("cx", function (d) { 
+        	return leftScale(parseFloat(d['2001'])); 
+        })
+        .attr("cy", heightSpace)
+        .attr("r", 5)
+        .style("fill", "blue");
+
+    var middleDot = svg.selectAll(".circle")
+        .data(data);
+        
+    middleDot.enter()
+        .append("circle")
+        .attr("cx", function (d) { 
+        	return middleScale(parseFloat(d['2006'])); 
+        })
+        .attr("cy", heightSpace)
+        .attr("r", 5)
+        .style("fill", "green");
+
+    var rightDot = svg.selectAll(".circle")
+        .data(data);
+        
+    rightDot.enter()
+        .append("circle")
+        .attr("cx", function (d) { 
+        	return rightScale(parseFloat(d['2011'])); 
+        })
+        .attr("cy", heightSpace)
+        .attr("r", 5)
+        .style("fill", "red");
+
+    function heightSpace(d) {
+    	for (i = 0; i < data.length; i++){
+    		for (j = 0; j = data.length; j++){
+    			console.log("hello");
+    		}
+    	}
+    }
 
 	// // ================ BEGIN LABELS ================= //
 
