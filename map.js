@@ -41,10 +41,19 @@ var fleetwood = rsr.path("M127.027,134.668c-0.487-0.715-1.234-0.911-2.027-1.012 
 
 for(var i = 0; i < town_centers.length; i++){
 
-	//change fill color of town center
+	var newton_plot = document.getElementsByName("Newton");
+	var guildford_plot = document.getElementsByName("Guildford");
+	var fleetwood_plot = document.getElementsByName("Fleetwood");
+	var cloverdale_plot = document.getElementsByName("Cloverdale");
+	var south_surrey_plot = document.getElementsByName("South Surrey");
+	
 
 	town_centers[i].click(function(e){
-		
+		if(this.data("id") == 'whalley'){
+			for(var i = 0; i < newton_plot.length; i++){
+				console.log(newton_plot);
+			}
+		}
 	});
 
 
@@ -52,16 +61,6 @@ for(var i = 0; i < town_centers.length; i++){
 		this.node.style.fill = "#aec7e8";
 		document.getElementById(this.data("id")).style.display = 'block';
 		
-		if(this.data("id") == 'whalley'){
-			document.getElementsByName("Whalley")[0].style.stroke = 'red';
-			document.getElementsByName("Whalley")[1].style.stroke = 'red';
-			document.getElementsByName("Whalley")[2].style.fill = 'red';
-			document.getElementsByName("Whalley")[3].style.fill = 'red';
-			document.getElementsByName("Whalley")[4].style.fill = 'red';
-			document.getElementsByName("Whalley")[5].style.color = 'red !important';
-			console.log(document.getElementsByName("Whalley"));
-		}
-
 		if(this.data("id") == 'whalley'){
 			document.getElementsByName("Whalley")[0].style.stroke = 'red';
 			document.getElementsByName("Whalley")[1].style.stroke = 'red';
