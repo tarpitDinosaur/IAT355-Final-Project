@@ -199,12 +199,12 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 		.attr("transform", "translate(0, 40)")
 		.call(axis);
 
-	// ================= AXIS ===================== //    
+	// ================= END AXIS ===================== //    
    
 
-	// // ================ BEGIN LABELS ================= //
+	// ================ BEGIN LABELS ================= //
 
-	// // label 2011 data
+	// label 2011 data
 	// var rightLabels = svg.selectAll(".right-labels")
 	// 	.data(data);
 		
@@ -219,7 +219,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	// 		return numericalFormatter(d['2011']) + " " + d['Population'];
 	// 	});
 
-	// // label 2006 data
+	// label 2006 data
 	// var middleLabels = svg.selectAll(".middle-labels")
 	// 	.data(data);
 		
@@ -253,48 +253,76 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 		})
 		.attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
 		.style("text-anchor", "end")
-		.on("click", function(){
-			if(this.data("id") == 'whalley'){
-				document.getElementsByName("Whalley")[0].style.stroke = 'red';
-				document.getElementsByName("Whalley")[1].style.stroke = 'red';
-				document.getElementsByName("Whalley")[2].style.fill = 'red';
-				document.getElementsByName("Whalley")[3].style.fill = 'red';
-				document.getElementsByName("Whalley")[4].style.fill = 'red';
-				document.getElementsByName("Whalley")[5].style.color = 'red !important';
-				console.log(document.getElementsByName("Whalley"));
-			}
-		})
-		;
-	
-	// title
-	// svg.append("text")
-	// 	.attr("x", width / 2)
-	// 	.attr("y", margin.top)
-	// 	.attr("class", "chart-title")
-	// 	.text("Surrey Census Population, 2001-2011");
+		// .on("click", function(){
+		// 	if(this.data("id") == 'whalley'){
+		// 		document.getElementsByName("Whalley")[0].style.stroke = 'red';
+		// 		document.getElementsByName("Whalley")[1].style.stroke = 'red';
+		// 		document.getElementsByName("Whalley")[2].style.fill = 'red';
+		// 		document.getElementsByName("Whalley")[3].style.fill = 'red';
+		// 		document.getElementsByName("Whalley")[4].style.fill = 'red';
+		// 		document.getElementsByName("Whalley")[5].style.color = 'red !important';
+		// 		console.log(document.getElementsByName("Whalley"));
+		// 	}
+		.on("mouseover", highlightMap)
+      	.on("mouseout", unhighlightMap)
+		});
 
-	// years
-	// svg.append("text")
-	// 	.attr("class","years-label")
-	// 	.attr("x", margin.left - 60)
-	// 	.attr("y", margin.top + 14)
-	// 	.text("2001");
+		function highlightMap(d){
+	        if(d['Population'] == "Cloverdale"){
+	          document.getElementById("cloverdale").style.display = "block";
+	          town_centers[0].node.style.fill = "#aec7e8"; 
+	        }
+	        if(d['Population'] == "South Surrey"){
+	          document.getElementById("south_surrey").style.display = "block";
+	          town_centers[1].node.style.fill = "#aec7e8"; 
+	        }
+	        if(d['Population'] == "Guildford"){
+	          document.getElementById("guildford").style.display = "block";
+	          town_centers[2].node.style.fill = "#aec7e8"; 
+	        }
+			if(d['Population'] == "Whalley"){
+	          document.getElementById("whalley").style.display = "block";
+	          town_centers[3].node.style.fill = "#aec7e8"; 
+	        }
+	        if(d['Population'] == "Newton"){
+	          document.getElementById("newton").style.display = "block";
+	          town_centers[4].node.style.fill = "#aec7e8"; 
+	        }
+	        if(d['Population'] == "Fleetwood"){
+	          document.getElementById("fleetwood").style.display = "block";
+	          town_centers[5].node.style.fill = "#aec7e8"; 
+	        }
+		}
 
-	// svg.append("text")
-	// 	.attr("class","years-label")
-	// 	.attr("x", width/2 + 3)
-	// 	.attr("y", margin.top + 14)
-	// 	.text("2006");
-
-	// svg.append("text")
-	// 	.attr("class","years-label")
-	// 	.attr("x", width - margin.right + 40)
-	// 	.attr("y", margin.top + 14)
-	// 	.text("2011");
-
+		function unhighlightMap(d){
+			if(d['Population'] == "Cloverdale"){
+	          document.getElementById("cloverdale").style.display = "none";
+	          town_centers[0].node.style.fill = "#DDDDDD"; 
+	        }
+	        if(d['Population'] == "South Surrey"){
+	          document.getElementById("south_surrey").style.display = "none";
+	          town_centers[1].node.style.fill = "#DDDDDD"; 
+	        }
+	        if(d['Population'] == "Guildford"){
+	          document.getElementById("guildford").style.display = "none";
+	          town_centers[2].node.style.fill = "#DDDDDD"; 
+	        }
+			if(d['Population'] == "Whalley"){
+	          document.getElementById("whalley").style.display = "none";
+	          town_centers[3].node.style.fill = "#DDDDDD"; 
+	        }
+	        if(d['Population'] == "Newton"){
+	          document.getElementById("newton").style.display = "none";
+	          town_centers[4].node.style.fill = "#DDDDDD"; 
+	        }
+	        if(d['Population'] == "Fleetwood"){
+	          document.getElementById("fleetwood").style.display = "none";
+	          town_centers[5].node.style.fill = "#DDDDDD"; 
+	        }
+		}
 
 	// ================ END LABELS ================= //
-});
+
 // function lineThicknessLeft(d){
 // 	if (1 - (d["2001"] / d["2006"]) > 0.25) return "9";
 	
