@@ -3,7 +3,7 @@ var height = 300;
 
 var margin = {top: 20, bottom: 20, left: 100, right:100};
 
-var lineHeight = 30;
+var lineHeight = 40;
 
 // data from 2001
 var leftScale = d3.scale.linear()
@@ -40,13 +40,16 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	 leftLines.enter()
 		.append("line")
 	 	.attr("class","left-line")
+	 	.attr("name", function(d) {
+	        return d['Population']
+	      })
 	 	.attr("y1", 80)
 	 	.attr("y2", 80)
 	 	.attr("x1", function(d) {
 	 		return leftScale(parseFloat(d['2001']));
 	 	})
 	 	.attr("x2", function(d) {
-	 		return middleScale(parseFloat(d['2006']));
+	 		return middleScale(parseFloat(d['2006']))
 	 	})
 
 	 	// line style
@@ -61,6 +64,9 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	rightLines.enter()
 		.append("line")
 		.attr("class","right-line")
+		.attr("name", function(d) {
+	        return d['Population']
+	      })
 		.attr("y1", 80)
 	 	.attr("y2", 80)
 	 	.attr("x1", function(d) {
@@ -84,6 +90,9 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
         
     leftDot.enter()
         .append("circle")
+        .attr("name", function(d) {
+	        return d['Population']
+	      })
         .attr("cx", function (d) { 
         	return leftScale(parseFloat(d['2001'])); 
         })
@@ -91,7 +100,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
         .attr("r", 5)
         .style("fill", d3.rgb(44, 160, 44))
         .attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
-        .on("mouseover", showtooltip)
+        .on("mouseover", showtooltip2001)
     	.on("mouseout", hidetooltip);
 
     var middleDot = svg.selectAll(".circle")
@@ -99,6 +108,9 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
         
     middleDot.enter()
         .append("circle")
+        .attr("name", function(d) {
+	        return d['Population']
+	      })
         .attr("cx", function (d) { 
         	return middleScale(parseFloat(d['2006'])); 
         })
@@ -106,7 +118,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
         .attr("r", 5)
         .style("fill", d3.rgb(31, 119, 180))
         .attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
-        .on("mouseover", showtooltip)
+        .on("mouseover", showtooltip2006)
     	.on("mouseout", hidetooltip);
 
     var rightDot = svg.selectAll(".circle")
@@ -114,6 +126,9 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
         
     rightDot.enter()
         .append("circle")
+        .attr("name", function(d) {
+	        return d['Population']
+	      })
         .attr("cx", function (d) { 
         	return rightScale(parseFloat(d['2011'])); 
         })
@@ -121,14 +136,43 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
         .attr("r", 5)
         .style("fill", d3.rgb(255, 127, 14))
         .attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
-        .on("mouseover", showtooltip)
+        .on("mouseover", showtooltip2011)
     	.on("mouseout", hidetooltip);
 
-		function showtooltip(d){
+		function showtooltip2001(d){
 		  d3.select("#tooltip")
 
 		  .html(
+		          //"Year: 2001 <br/>" + 
+		          numericalFormatter(d['2001'])
+		  )
+		  .style({
+		      "display": "block",
+		      "left": d3.event.pageX + "px",
+		      "top": d3.event.pageY + "px"
+		  })
+		}
+
+		function showtooltip2006(d){
+		  d3.select("#tooltip")
+
+		  .html(
+		          //"Year: 2006 <br/>" + 
 		          numericalFormatter(d['2006'])
+		  )
+		  .style({
+		      "display": "block",
+		      "left": d3.event.pageX + "px",
+		      "top": d3.event.pageY + "px"
+		  })
+		}
+
+		function showtooltip2011(d){
+		  d3.select("#tooltip")
+
+		  .html(
+		          //"Year: 2011 <br/>" + 
+		          numericalFormatter(d['2011'])
 		  )
 		  .style({
 		      "display": "block",
@@ -197,6 +241,9 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 	leftLabels.enter()
 		.append("text")
 		.attr("class","left-labels")
+		.attr("name", function(d) {
+	        return d['Population']
+	      })
 		.attr("y", 85)
 		.attr("x", function(d) {
 			return leftScale(parseFloat(d['2001'])) - 10;
@@ -205,7 +252,19 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 			return d['Population'];
 		})
 		.attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
-		.style("text-anchor", "end");
+		.style("text-anchor", "end")
+		.on("click", function(){
+			if(this.data("id") == 'whalley'){
+				document.getElementsByName("Whalley")[0].style.stroke = 'red';
+				document.getElementsByName("Whalley")[1].style.stroke = 'red';
+				document.getElementsByName("Whalley")[2].style.fill = 'red';
+				document.getElementsByName("Whalley")[3].style.fill = 'red';
+				document.getElementsByName("Whalley")[4].style.fill = 'red';
+				document.getElementsByName("Whalley")[5].style.color = 'red !important';
+				console.log(document.getElementsByName("Whalley"));
+			}
+		})
+		;
 	
 	// title
 	// svg.append("text")
@@ -236,7 +295,6 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
 
 	// ================ END LABELS ================= //
 });
-
 // function lineThicknessLeft(d){
 // 	if (1 - (d["2001"] / d["2006"]) > 0.25) return "9";
 	

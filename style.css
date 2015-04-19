@@ -2,7 +2,7 @@ body{
 	padding: 0 3vw;
 	max-width: 1200px;
 }
-text{
+text, p{
 	font-family: Helvetica;
 	font-size: 13px;
 	font-weight: 300;
@@ -25,17 +25,26 @@ h5{
 	margin: 0;
 }
 
+p{
+	color: #ccc;
+	margin-left: 12px;
+}
+
 #slopegraph{
 	margin: 0 auto;
 	text-align: center;
 	margin-left: 260px;
+	padding-top: 25vh;
 }
 
 #map{
 	width: 20vw;
-	position: fixed;
-	top: 30px;
-	right: 5vw;
+	height: 275px;
+	margin-top: 60px;
+}
+
+.map-label#cloverdale, .map-label#fleetwood, .map-label#newton, .map-label#guildford, .map-label#whalley, .map-label#south_surrey{
+	display:none;
 }
 
 .left-labels{
