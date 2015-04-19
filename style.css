@@ -30,11 +30,21 @@ p{
 	margin-left: 12px;
 }
 
+.axis-scale{
+	font-size: 13px;
+	fill: #ccc;
+	cursor: pointer;
+}
+
+.axis-scale:hover{
+	fill: #1f77b4;
+}
+
 #slopegraph{
 	margin: 0 auto;
 	text-align: center;
 	margin-left: 260px;
-	padding-top: 25vh;
+	padding-top: 1vh;
 }
 
 #map{

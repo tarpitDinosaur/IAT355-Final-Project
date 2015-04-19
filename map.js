@@ -44,7 +44,7 @@ for(var i = 0; i < town_centers.length; i++){
 	//change fill color of town center
 
 	town_centers[i].click(function(e){
-		
+	
 	});
 
 	town_centers[i].mouseover(function(e){
@@ -57,7 +57,7 @@ for(var i = 0; i < town_centers.length; i++){
 			document.getElementsByName("Cloverdale")[2].style.fill = 'red';
 			document.getElementsByName("Cloverdale")[3].style.fill = 'red';
 			document.getElementsByName("Cloverdale")[4].style.fill = 'red';
-			document.getElementsByName("Cloverdale")[5].style.color = 'red !important';
+			document.getElementsByName("Cloverdale")[5].style.fill = 'red';
 		}
 
 		if(this.data("id") == 'fleetwood'){
@@ -66,7 +66,7 @@ for(var i = 0; i < town_centers.length; i++){
 			document.getElementsByName("Fleetwood")[2].style.fill = 'red';
 			document.getElementsByName("Fleetwood")[3].style.fill = 'red';
 			document.getElementsByName("Fleetwood")[4].style.fill = 'red';
-			document.getElementsByName("Fleetwood")[5].style.color = 'red !important';
+			document.getElementsByName("Fleetwood")[5].style.fill = 'red';
 		}
 
 		if(this.data("id") == 'guildford'){
@@ -75,7 +75,7 @@ for(var i = 0; i < town_centers.length; i++){
 			document.getElementsByName("Guildford")[2].style.fill = 'red';
 			document.getElementsByName("Guildford")[3].style.fill = 'red';
 			document.getElementsByName("Guildford")[4].style.fill = 'red';
-			document.getElementsByName("Guildford")[5].style.color = 'red !important';
+			document.getElementsByName("Guildford")[5].style.fill = 'red';
 		}
 
 		if(this.data("id") == 'newton'){
@@ -84,7 +84,7 @@ for(var i = 0; i < town_centers.length; i++){
 			document.getElementsByName("Newton")[2].style.fill = 'red';
 			document.getElementsByName("Newton")[3].style.fill = 'red';
 			document.getElementsByName("Newton")[4].style.fill = 'red';
-			document.getElementsByName("Newton")[5].style.color = 'red !important';
+			document.getElementsByName("Newton")[5].style.fill = 'red';
 		}
 
 		if(this.data("id") == 'south_surrey'){
@@ -93,7 +93,7 @@ for(var i = 0; i < town_centers.length; i++){
 			document.getElementsByName("South Surrey")[2].style.fill = 'red';
 			document.getElementsByName("South Surrey")[3].style.fill = 'red';
 			document.getElementsByName("South Surrey")[4].style.fill = 'red';
-			document.getElementsByName("South Surrey")[5].style.color = 'red !important';
+			document.getElementsByName("South Surrey")[5].style.fill = 'red';
 		}
 
 		if(this.data("id") == 'whalley'){
@@ -102,7 +102,7 @@ for(var i = 0; i < town_centers.length; i++){
 			document.getElementsByName("Whalley")[2].style.fill = 'red';
 			document.getElementsByName("Whalley")[3].style.fill = 'red';
 			document.getElementsByName("Whalley")[4].style.fill = 'red';
-			document.getElementsByName("Whalley")[5].style.color = 'red !important';
+			document.getElementsByName("Whalley")[5].style.fill = 'red !important';
 		}
 	});
 
@@ -116,7 +116,7 @@ for(var i = 0; i < town_centers.length; i++){
 			document.getElementsByName("Cloverdale")[2].style.fill = 'rgb(44, 160, 44)';
 			document.getElementsByName("Cloverdale")[3].style.fill = 'rgb(31, 119, 180)';
 			document.getElementsByName("Cloverdale")[4].style.fill = 'rgb(255, 127, 14)';
-			document.getElementsByName("Cloverdale")[5].style.color = 'red !important';
+			document.getElementsByName("Cloverdale")[5].style.fill = 'black';
 		}
 
 		if(this.data("id") == 'fleetwood'){
@@ -125,7 +125,7 @@ for(var i = 0; i < town_centers.length; i++){
 			document.getElementsByName("Fleetwood")[2].style.fill = 'rgb(44, 160, 44)';
 			document.getElementsByName("Fleetwood")[3].style.fill = 'rgb(31, 119, 180)';
 			document.getElementsByName("Fleetwood")[4].style.fill = 'rgb(255, 127, 14)';
-			document.getElementsByName("Fleetwood")[5].style.color = 'red !important';
+			document.getElementsByName("Fleetwood")[5].style.fill = 'black';
 		}
 
 		if(this.data("id") == 'guildford'){
@@ -134,7 +134,7 @@ for(var i = 0; i < town_centers.length; i++){
 			document.getElementsByName("Guildford")[2].style.fill = 'rgb(44, 160, 44)';
 			document.getElementsByName("Guildford")[3].style.fill = 'rgb(31, 119, 180)';
 			document.getElementsByName("Guildford")[4].style.fill = 'rgb(255, 127, 14)';
-			document.getElementsByName("Guildford")[5].style.color = 'red !important';
+			document.getElementsByName("Guildford")[5].style.fill = 'black';
 		}
 
 		if(this.data("id") == 'newton'){
@@ -143,7 +143,7 @@ for(var i = 0; i < town_centers.length; i++){
 			document.getElementsByName("Newton")[2].style.fill = 'rgb(44, 160, 44)';
 			document.getElementsByName("Newton")[3].style.fill = 'rgb(31, 119, 180)';
 			document.getElementsByName("Newton")[4].style.fill = 'rgb(255, 127, 14)';
-			document.getElementsByName("Newton")[5].style.color = 'red !important';
+			document.getElementsByName("Newton")[5].style.fill = 'black';
 		}
 
 		if(this.data("id") == 'south_surrey'){
@@ -152,7 +152,7 @@ for(var i = 0; i < town_centers.length; i++){
 			document.getElementsByName("South Surrey")[2].style.fill = 'rgb(44, 160, 44)';
 			document.getElementsByName("South Surrey")[3].style.fill = 'rgb(31, 119, 180)';
 			document.getElementsByName("South Surrey")[4].style.fill = 'rgb(255, 127, 14)';
-			document.getElementsByName("South Surrey")[5].style.color = 'red !important';
+			document.getElementsByName("South Surrey")[5].style.fill = 'black';
 		}
 
 		if(this.data("id") == 'whalley'){
@@ -161,7 +161,7 @@ for(var i = 0; i < town_centers.length; i++){
 			document.getElementsByName("Whalley")[2].style.fill = 'rgb(44, 160, 44)';
 			document.getElementsByName("Whalley")[3].style.fill = 'rgb(31, 119, 180)';
 			document.getElementsByName("Whalley")[4].style.fill = 'rgb(255, 127, 14)';
-			document.getElementsByName("Whalley")[5].style.color = 'red !important';
+			document.getElementsByName("Whalley")[5].style.fill = 'black';
 		}
 	});
 }
