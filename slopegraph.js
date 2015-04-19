@@ -91,7 +91,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
         .attr("r", 5)
         .style("fill", d3.rgb(44, 160, 44))
         .attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
-        .on("mouseover", showtooltip)
+        .on("mouseover", showtooltip2001)
     	.on("mouseout", hidetooltip);
 
     var middleDot = svg.selectAll(".circle")
@@ -106,7 +106,7 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
         .attr("r", 5)
         .style("fill", d3.rgb(31, 119, 180))
         .attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
-        .on("mouseover", showtooltip)
+        .on("mouseover", showtooltip2006)
     	.on("mouseout", hidetooltip);
 
     var rightDot = svg.selectAll(".circle")
@@ -121,14 +121,43 @@ d3.csv('http://www.sfu.ca/~atso/test_data.csv', function(d) {
         .attr("r", 5)
         .style("fill", d3.rgb(255, 127, 14))
         .attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
-        .on("mouseover", showtooltip)
+        .on("mouseover", showtooltip2011)
     	.on("mouseout", hidetooltip);
 
-		function showtooltip(d){
+		function showtooltip2001(d){
 		  d3.select("#tooltip")
 
 		  .html(
+		          //"Year: 2001 <br/>" + 
+		          numericalFormatter(d['2001'])
+		  )
+		  .style({
+		      "display": "block",
+		      "left": d3.event.pageX + "px",
+		      "top": d3.event.pageY + "px"
+		  })
+		}
+
+		function showtooltip2006(d){
+		  d3.select("#tooltip")
+
+		  .html(
+		          //"Year: 2006 <br/>" + 
 		          numericalFormatter(d['2006'])
+		  )
+		  .style({
+		      "display": "block",
+		      "left": d3.event.pageX + "px",
+		      "top": d3.event.pageY + "px"
+		  })
+		}
+
+		function showtooltip2011(d){
+		  d3.select("#tooltip")
+
+		  .html(
+		          //"Year: 2011 <br/>" + 
+		          numericalFormatter(d['2011'])
 		  )
 		  .style({
 		      "display": "block",
