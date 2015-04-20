@@ -107,3 +107,11 @@ p{
     z-index: 1000;
     opacity: 0.7;
 }
+
+.a{
+	text-decoration: none;
+}
+
+.a:visited{
+	text-decoration: none;
+}

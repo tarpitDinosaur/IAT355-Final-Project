@@ -8,7 +8,7 @@ var lineHeight = 20;
 var data;
 
 // load csv
-d3.csv('http://www.sfu.ca/~atso/test2_data.csv', function(d) {
+d3.csv('test2_data.csv', function(d) {
   data = d;
 
 // data from 2001
@@ -379,106 +379,6 @@ var svg = d3.select("#details")
             }
         //}
     }
-
-    function toggle(d){
-      if((d['Area'] == "Cloverdale") && (d['sub-category'] == 0)){
-
-        // var cloverdaleEl = document.getElementsByName("Cloverdale 1");
-
-        // for(var i = 0; i = cloverdaleEl.length; i++){
-        //  // if (cloverdaleEl[i].style.display != 'none') {
-        //  //  cloverdaleEl[i].style.display = 'none';
-        //  // } else {
-        //  //  cloverdaleEl[i].style.display = '';
-        //  // }
-        // console.log(cloverdaleEl);
-        // }
-
-        if (document.getElementsByName("Cloverdale 1")[0].style.display != 'none') {
-          document.getElementsByName("Cloverdale 1")[0].style.display = 'none';
-        } else {
-          document.getElementsByName("Cloverdale 1")[0].style.display = '';
-        }
-
-        if (document.getElementsByName("Cloverdale 1")[1].style.display != 'none') {
-          document.getElementsByName("Cloverdale 1")[1].style.display = 'none';
-        } else {
-          document.getElementsByName("Cloverdale 1")[1].style.display = '';
-        }
-
-        if (document.getElementsByName("Cloverdale 1")[2].style.display != 'none') {
-          document.getElementsByName("Cloverdale 1")[2].style.display = 'none';
-        } else {
-          document.getElementsByName("Cloverdale 1")[2].style.display = '';
-        }
-
-        if (document.getElementsByName("Cloverdale 1")[3].style.display != 'none') {
-          document.getElementsByName("Cloverdale 1")[3].style.display = 'none';
-        } else {
-          document.getElementsByName("Cloverdale 1")[3].style.display = '';
-        }
-
-        if (document.getElementsByName("Cloverdale 1")[4].style.display != 'none') {
-          document.getElementsByName("Cloverdale 1")[4].style.display = 'none';
-        } else {
-          document.getElementsByName("Cloverdale 1")[4].style.display = '';
-        }
-
-        if (document.getElementsByName("Cloverdale 1")[5].style.display != 'none') {
-          document.getElementsByName("Cloverdale 1")[5].style.display = 'none';
-        } else {
-          document.getElementsByName("Cloverdale 1")[5].style.display = '';
-        }
-
-        if (document.getElementsByName("Cloverdale 1")[6].style.display != 'none') {
-          document.getElementsByName("Cloverdale 1")[6].style.display = 'none';
-        } else {
-          document.getElementsByName("Cloverdale 1")[6].style.display = '';
-        }
-
-        if (document.getElementsByName("Cloverdale 1")[7].style.display != 'none') {
-          document.getElementsByName("Cloverdale 1")[7].style.display = 'none';
-        } else {
-          document.getElementsByName("Cloverdale 1")[7].style.display = '';
-        }
-
-        if (document.getElementsByName("Cloverdale 1")[8].style.display != 'none') {
-          document.getElementsByName("Cloverdale 1")[8].style.display = 'none';
-        } else {
-          document.getElementsByName("Cloverdale 1")[8].style.display = '';
-        }
-
-        if (document.getElementsByName("Cloverdale 1")[9].style.display != 'none') {
-          document.getElementsByName("Cloverdale 1")[9].style.display = 'none';
-        } else {
-          document.getElementsByName("Cloverdale 1")[9].style.display = '';
-        }
-
-        if (document.getElementsByName("Cloverdale 1")[10].style.display != 'none') {
-          document.getElementsByName("Cloverdale 1")[10].style.display = 'none';
-        } else {
-          document.getElementsByName("Cloverdale 1")[10].style.display = '';
-        }
-
-        if (document.getElementsByName("Cloverdale 1")[11].style.display != 'none') {
-          document.getElementsByName("Cloverdale 1")[11].style.display = 'none';
-        } else {
-          document.getElementsByName("Cloverdale 1")[11].style.display = '';
-        }
-
-        if (document.getElementsByName("Cloverdale 1")[12].style.display != 'none') {
-          document.getElementsByName("Cloverdale 1")[12].style.display = 'none';
-        } else {
-          document.getElementsByName("Cloverdale 1")[12].style.display = '';
-        }
-    
-        console.log("is sub-category");
-        console.log(document.getElementsByName("Cloverdale 1"));
-
-      } else {
-        console.log("is not sub-category");
-      }
-}
   // ================ END LABELS ================= //
 
 // function lineThicknessLeft(d){
