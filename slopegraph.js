@@ -10,6 +10,7 @@ var data;
 // load csv
 d3.csv('http://www.sfu.ca/~jlc40/census_data_updated.csv', function(d) {
 	data = d;
+
 // data from 2001
 var leftScale = d3.scale.linear()
 	.domain([0, 135000])
@@ -31,10 +32,6 @@ var svg = d3.select("#slopegraph")
 	.append("svg")
 	.attr("width", width)
 	.attr("height", height);
-
-// load csv
-d3.csv('http://www.sfu.ca/~jlc40/census_data_updated.csv', function(d) {
-	data = d;
 	
 	// ================ BEGIN LINES ================= //
 
@@ -189,13 +186,13 @@ d3.csv('http://www.sfu.ca/~jlc40/census_data_updated.csv', function(d) {
 
 	// ================= AXIS ===================== //
 
-	svg
-	.append("text")
-	.attr("class", "axis-scale")
-	.text("[ range (-) ]")
-	.attr("x", 20)
-	.attr("y", 40)
-	.on("click", scaleAxis);
+	// svg
+	// .append("text")
+	// .attr("class", "axis-scale")
+	// .text("[ range (-) ]")
+	// .attr("x", 20)
+	// .attr("y", 40)
+	// .on("click", scaleAxis);
 
 
 	var axis = d3.svg.axis()
@@ -207,12 +204,12 @@ d3.csv('http://www.sfu.ca/~jlc40/census_data_updated.csv', function(d) {
 		.attr("transform", "translate(0, 40)")
 		.call(axis);
 
-	svg
-	.append("text")
-	.attr("class", "axis-scale")
-	.text("[ range (+) ]")
-	.attr("x", 980)
-	.attr("y", 40);
+	// svg
+	// .append("text")
+	// .attr("class", "axis-scale")
+	// .text("[ range (+) ]")
+	// .attr("x", 980)
+	// .attr("y", 40);
 
 	function scaleAxis(){
 		var clickScale = d3.scale.linear()
@@ -318,8 +315,6 @@ d3.csv('http://www.sfu.ca/~jlc40/census_data_updated.csv', function(d) {
 		.attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
 		.style("text-anchor", "end")
 		.on("click", toggle)
-			return d['Region'] + ", " + d['Category'];
-		})
 		.on("mouseover", highlightMap)
       	.on("mouseout", unhighlightMap)
 		});
@@ -438,7 +433,7 @@ d3.csv('http://www.sfu.ca/~jlc40/census_data_updated.csv', function(d) {
 			} else {
 				console.log("is not sub-category");
 			}
-
+}
 	// ================ END LABELS ================= //
 
 // function lineThicknessLeft(d){
