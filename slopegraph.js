@@ -3,21 +3,26 @@ var height = 2000;
 
 var margin = {top: 20, bottom: 20, left: 100, right:100};
 
-var lineHeight = 40;
+var lineHeight = 20;
 
+var data;
+
+// load csv
+d3.csv('http://www.sfu.ca/~jlc40/census_data_updated.csv', function(d) {
+	data = d;
 // data from 2001
 var leftScale = d3.scale.linear()
-	.domain([100, 135000])
+	.domain([0, 135000])
 	.range([100, 960]);
 
 // data from 2006
 var middleScale = d3.scale.linear()
-	.domain([100, 135000])
+	.domain([0, 135000])
 	.range([100, 960]);	
 
 // data from 2011
 var rightScale = d3.scale.linear()
-	.domain([100, 135000])
+	.domain([0, 135000])
 	.range([100, 960]);	
 
 var numericalFormatter = d3.format("0,.0f");
@@ -184,6 +189,15 @@ d3.csv('http://www.sfu.ca/~jlc40/census_data_updated.csv', function(d) {
 
 	// ================= AXIS ===================== //
 
+	svg
+	.append("text")
+	.attr("class", "axis-scale")
+	.text("[ range (-) ]")
+	.attr("x", 20)
+	.attr("y", 40)
+	.on("click", scaleAxis);
+
+
 	var axis = d3.svg.axis()
 		.scale(rightScale)
 		.orient("top");
@@ -193,12 +207,68 @@ d3.csv('http://www.sfu.ca/~jlc40/census_data_updated.csv', function(d) {
 		.attr("transform", "translate(0, 40)")
 		.call(axis);
 
-	// ================= END AXIS ===================== //    
+	svg
+	.append("text")
+	.attr("class", "axis-scale")
+	.text("[ range (+) ]")
+	.attr("x", 980)
+	.attr("y", 40);
+
+	function scaleAxis(){
+		var clickScale = d3.scale.linear()
+			.domain([d3.min(data, function(d){return d['2001']}), d3.max(data, function(d){return d['2011']})]);	
+
+		// lines from 2001 - 2006
+		
+		var leftLines = svg.selectAll(".line")
+		leftLines.enter()
+		 	.attr("x1", function(d) {
+		 		return leftScale(parseFloat((d['2001'])/10))
+		 	})
+		 	.attr("x2", function(d) {
+		 		return middleScale(parseFloat((d['2006'])/10))
+		 	});
+
+		var rightLines = svg.selectAll(".line")
+		rightLines.enter()
+		 	.attr("x1", function(d) {
+		 		return middleScale(parseFloat((d['2006'])/10))
+		 	})
+		 	.attr("x2", function(d) {
+		 		return rightScale(parseFloat((d['2011'])/10))
+		 	});
+		
+	    var leftDot = svg.selectAll(".circle")
+	    leftDot.enter()
+	        .attr("cx", function (d) { 
+	        	return leftScale(parseFloat((d['2001'])/10)) 
+	        });
+	    
+	    var middleDot = svg.selectAll(".circle")    
+	    middleDot.enter()
+	        .attr("cx", function (d) { 
+	        	return middleScale(parseFloat((d['2006'])/10))
+	        });
+
+	    var rightDot = svg.selectAll(".circle")
+	    rightDot.enter()
+	        .attr("cx", function (d) { 
+	        	return rightScale(parseFloat((d['2011'])/10))
+	        });
+
+	    var leftLabels = svg.selectAll(".left-labels")
+		leftLabels.enter()
+			.attr("x", function(d) {
+				return leftScale(parseFloat((d['2001'])/10)) - 10
+			});
+		}
+
+	// ================= AXIS ===================== //    
    
 
-	// ================ BEGIN LABELS ================= //
+	// // ================ BEGIN LABELS ================= //
 
-	// label 2011 data
+	// // label 2011 data
 	// var rightLabels = svg.selectAll(".right-labels")
 	// 	.data(data);
 		
@@ -210,7 +280,9 @@ d3.csv('http://www.sfu.ca/~jlc40/census_data_updated.csv', function(d) {
 	// 		return rightScale(parseFloat(d['2011']));
 	// 	})
 	// 	.text(function (d) {
+
 	// 		return numericalFormatter(d['2011']) + " " + d['Area'];
+
 	// 	});
 
 	// label 2006 data
@@ -246,6 +318,8 @@ d3.csv('http://www.sfu.ca/~jlc40/census_data_updated.csv', function(d) {
 		.attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
 		.style("text-anchor", "end")
 		.on("click", toggle)
+			return d['Region'] + ", " + d['Category'];
+		})
 		.on("mouseover", highlightMap)
       	.on("mouseout", unhighlightMap)
 		});
@@ -307,7 +381,7 @@ d3.csv('http://www.sfu.ca/~jlc40/census_data_updated.csv', function(d) {
 		        }
 		    //}
 		}
-	
+
 		function toggle(d){
 			if((d['Area'] == "Cloverdale") && (d['sub-category'] == 0)){
 
@@ -364,7 +438,6 @@ d3.csv('http://www.sfu.ca/~jlc40/census_data_updated.csv', function(d) {
 			} else {
 				console.log("is not sub-category");
 			}
-		}
 
 	// ================ END LABELS ================= //
 
