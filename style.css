@@ -37,6 +37,13 @@ p{
 	padding-top: 1vh;
 }
 
+#details{
+	margin: 0 auto;
+	text-align: center;
+	margin-left: 260px;
+	padding-top: 2vh;
+}
+
 #map{
 	width: 20vw;
 	height: 275px;

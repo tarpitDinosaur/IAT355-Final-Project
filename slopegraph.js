@@ -1,29 +1,29 @@
 var width = 980;
-var height = 2000;
+var height = 350;
 
 var margin = {top: 20, bottom: 20, left: 100, right:100};
 
-var lineHeight = 20;
+var lineHeight = 40;
 
 var data;
 
 // load csv
-d3.csv('http://www.sfu.ca/~jlc40/census_data_updated.csv', function(d) {
+d3.csv('http://www.sfu.ca/~jlc40/test_data.csv', function(d) {
 	data = d;
 
 // data from 2001
 var leftScale = d3.scale.linear()
-	.domain([0, 135000])
+	.domain([20000, 135000])
 	.range([100, 960]);
 
 // data from 2006
 var middleScale = d3.scale.linear()
-	.domain([0, 135000])
+	.domain([20000, 135000])
 	.range([100, 960]);	
 
 // data from 2011
 var rightScale = d3.scale.linear()
-	.domain([0, 135000])
+	.domain([20000, 135000])
 	.range([100, 960]);	
 
 var numericalFormatter = d3.format("0,.0f");
@@ -36,7 +36,7 @@ var svg = d3.select("#slopegraph")
 	// ================ BEGIN LINES ================= //
 
 	function name(d){
-		return d['Area'] + " " + d['sub-category']
+		return d['Area']
 	}
 
 	// lines from 2001 - 2006
@@ -310,11 +310,13 @@ var svg = d3.select("#slopegraph")
 			return leftScale(parseFloat(d['2001'])) - 10;
 		})
 		.text(function (d) {
-			return d['Area'] + ", " + d['Category'];
+			return d['Area'];
 		})
 		.attr("transform", function(d, i) { return "translate(0," + i * lineHeight + ")"; })
 		.style("text-anchor", "end")
-		.on("click", toggle)
+		.on("click", function(){
+			location.href="details.html";
+		})
 		.on("mouseover", highlightMap)
       	.on("mouseout", unhighlightMap)
 		});
@@ -380,52 +382,94 @@ var svg = d3.select("#slopegraph")
 		function toggle(d){
 			if((d['Area'] == "Cloverdale") && (d['sub-category'] == 0)){
 
-				var cloverdaleEl = document.getElementsByName("Cloverdale 1");
+				// var cloverdaleEl = document.getElementsByName("Cloverdale 1");
 
-				for(var i = 0; i = cloverdaleEl.length; i++){
-					// if (cloverdaleEl[i].style.display != 'none') {
-					// 	cloverdaleEl[i].style.display = 'none';
-					// } else {
-					// 	cloverdaleEl[i].style.display = '';
-					// }
-					console.log(cloverdaleEl);
+				// for(var i = 0; i = cloverdaleEl.length; i++){
+				// 	// if (cloverdaleEl[i].style.display != 'none') {
+				// 	// 	cloverdaleEl[i].style.display = 'none';
+				// 	// } else {
+				// 	// 	cloverdaleEl[i].style.display = '';
+				// 	// }
+				// console.log(cloverdaleEl);
+				// }
+
+				if (document.getElementsByName("Cloverdale 1")[0].style.display != 'none') {
+					document.getElementsByName("Cloverdale 1")[0].style.display = 'none';
+				} else {
+					document.getElementsByName("Cloverdale 1")[0].style.display = '';
 				}
 
-				// if (document.getElementsByName("Cloverdale 1")[0].style.display != 'none') {
-				// 	document.getElementsByName("Cloverdale 1")[0].style.display = 'none';
-				// } else {
-				// 	document.getElementsByName("Cloverdale 1")[0].style.display = '';
-				// }
+				if (document.getElementsByName("Cloverdale 1")[1].style.display != 'none') {
+					document.getElementsByName("Cloverdale 1")[1].style.display = 'none';
+				} else {
+					document.getElementsByName("Cloverdale 1")[1].style.display = '';
+				}
 
-				// if (document.getElementsByName("Cloverdale 1")[1].style.display != 'none') {
-				// 	document.getElementsByName("Cloverdale 1")[1].style.display = 'none';
-				// } else {
-				// 	document.getElementsByName("Cloverdale 1")[1].style.display = '';
-				// }
+				if (document.getElementsByName("Cloverdale 1")[2].style.display != 'none') {
+					document.getElementsByName("Cloverdale 1")[2].style.display = 'none';
+				} else {
+					document.getElementsByName("Cloverdale 1")[2].style.display = '';
+				}
 
-				// if (document.getElementsByName("Cloverdale 1")[2].style.display != 'none') {
-				// 	document.getElementsByName("Cloverdale 1")[2].style.display = 'none';
-				// } else {
-				// 	document.getElementsByName("Cloverdale 1")[2].style.display = '';
-				// }
+				if (document.getElementsByName("Cloverdale 1")[3].style.display != 'none') {
+					document.getElementsByName("Cloverdale 1")[3].style.display = 'none';
+				} else {
+					document.getElementsByName("Cloverdale 1")[3].style.display = '';
+				}
 
-				// if (document.getElementsByName("Cloverdale 1")[3].style.display != 'none') {
-				// 	document.getElementsByName("Cloverdale 1")[3].style.display = 'none';
-				// } else {
-				// 	document.getElementsByName("Cloverdale 1")[3].style.display = '';
-				// }
+				if (document.getElementsByName("Cloverdale 1")[4].style.display != 'none') {
+					document.getElementsByName("Cloverdale 1")[4].style.display = 'none';
+				} else {
+					document.getElementsByName("Cloverdale 1")[4].style.display = '';
+				}
 
-				// if (document.getElementsByName("Cloverdale 1")[4].style.display != 'none') {
-				// 	document.getElementsByName("Cloverdale 1")[4].style.display = 'none';
-				// } else {
-				// 	document.getElementsByName("Cloverdale 1")[4].style.display = '';
-				// }
+				if (document.getElementsByName("Cloverdale 1")[5].style.display != 'none') {
+					document.getElementsByName("Cloverdale 1")[5].style.display = 'none';
+				} else {
+					document.getElementsByName("Cloverdale 1")[5].style.display = '';
+				}
 
-				// if (document.getElementsByName("Cloverdale 1")[5].style.display != 'none') {
-				// 	document.getElementsByName("Cloverdale 1")[5].style.display = 'none';
-				// } else {
-				// 	document.getElementsByName("Cloverdale 1")[5].style.display = '';
-				// }
+				if (document.getElementsByName("Cloverdale 1")[6].style.display != 'none') {
+					document.getElementsByName("Cloverdale 1")[6].style.display = 'none';
+				} else {
+					document.getElementsByName("Cloverdale 1")[6].style.display = '';
+				}
+
+				if (document.getElementsByName("Cloverdale 1")[7].style.display != 'none') {
+					document.getElementsByName("Cloverdale 1")[7].style.display = 'none';
+				} else {
+					document.getElementsByName("Cloverdale 1")[7].style.display = '';
+				}
+
+				if (document.getElementsByName("Cloverdale 1")[8].style.display != 'none') {
+					document.getElementsByName("Cloverdale 1")[8].style.display = 'none';
+				} else {
+					document.getElementsByName("Cloverdale 1")[8].style.display = '';
+				}
+
+				if (document.getElementsByName("Cloverdale 1")[9].style.display != 'none') {
+					document.getElementsByName("Cloverdale 1")[9].style.display = 'none';
+				} else {
+					document.getElementsByName("Cloverdale 1")[9].style.display = '';
+				}
+
+				if (document.getElementsByName("Cloverdale 1")[10].style.display != 'none') {
+					document.getElementsByName("Cloverdale 1")[10].style.display = 'none';
+				} else {
+					document.getElementsByName("Cloverdale 1")[10].style.display = '';
+				}
+
+				if (document.getElementsByName("Cloverdale 1")[11].style.display != 'none') {
+					document.getElementsByName("Cloverdale 1")[11].style.display = 'none';
+				} else {
+					document.getElementsByName("Cloverdale 1")[11].style.display = '';
+				}
+
+				if (document.getElementsByName("Cloverdale 1")[12].style.display != 'none') {
+					document.getElementsByName("Cloverdale 1")[12].style.display = 'none';
+				} else {
+					document.getElementsByName("Cloverdale 1")[12].style.display = '';
+				}
 		
 				console.log("is sub-category");
 				console.log(document.getElementsByName("Cloverdale 1"));

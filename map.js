@@ -44,7 +44,7 @@ for(var i = 0; i < town_centers.length; i++){
 	//change fill color of town center
 
 	town_centers[i].click(function(e){
-	
+		
 	});
 
 	town_centers[i].mouseover(function(e){
